@@ -40,26 +40,28 @@ for state in states:
         else:
             transition[(state, alpha)] = dest
 
-# Etapa em que busca a sequeência de entrada
+# Etapa em que busca a sequência de entrada
 
-print("\nInsira a cadeia para iniciar o automato: ", end="")
-input_string = input()
+while(True):
+    print("\nInsira a cadeia para iniciar o automato: ", end="")
+    input_string = input()
 
-# Analisa a entrada com o estado atual como estado inicial
-current_state = start_state
+    # Analisa a entrada com o estado atual como estado inicial
+    current_state = start_state
 
-for char in input_string:
-    # Faz a transição para o proximo estado usando o estado atual e o alfabeto de entrada 
-    current_state = transition[(current_state, char)]
-    
-    # Verifica se o DFA está em um estado rejeitado
-    if current_state is None:
-        print("Rejeitado")
-        break
-else:
-    # Quando a string inteira for analisada, verifica se o estado final é um estado aceito
-    if (current_state in final_states):
-        print("Aceito")
+    for char in input_string:
+        # Faz a transição para o proximo estado usando o estado atual e o alfabeto de entrada 
+        current_state = transition[(current_state, char)]
+        
+        # Verifica se a cadeia é rejeitado
+        if current_state is None:
+            print("Rejeitado")
+            break
     else:
-        print("Rejeitado")
+        # Quando a string inteira for analisada, verifica se o estado final é um estado aceito
+        if (current_state in final_states):
+            print("Aceito")
+        else:
+            print("Rejeitado")
+    
             
